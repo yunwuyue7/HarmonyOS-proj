@@ -20,10 +20,10 @@ struct SplashPage { // 启动页面
   build() {
     Column(){
       if(this.flag){
-        Image($r('app.media.ic_logo_n'))
+        Image($r('app.media.ic_logo_lzu'))
           .logoStyle()
           .transition({type:TransitionType.Insert,opacity:0,translate:{x:-150}})
-        Text("留学助手")
+        Text("开源鸿蒙阅读器demo")
           .titleStyle()
           .transition({type:TransitionType.Insert,opacity:0,translate:{x:150}})
       }
@@ -38,7 +38,7 @@ struct SplashPage { // 启动页面
 @Styles function bgStyle() {
   .width('100%')
   .height('100%')
-  .backgroundImage($r('app.media.img_splash_bg'))
+  .backgroundImage($r('app.media.bg'))
   .backgroundImageSize({ width: '100%', height: '100%' })
 }
 

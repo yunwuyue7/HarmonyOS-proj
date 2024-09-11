@@ -98,16 +98,16 @@ struct LoginPage {
       }.formBgStyle()
 
       Row({ space: 10 }) {
-        Image($r('app.media.ic_logo_n'))
+        Image($r('app.media.ic_logo_lzu'))
           .width(36)
           .height(36)
-        Text('留学助手')
+        Text('阅读器demo')
           .fontColor('#546B9D')
           .fontWeight(FontWeight.Bold)
           .fontSize(20)
       }.margin({ top: 70 })
 
-      Text('Developed By SE_2024')
+      Text('Developed By LZU')
         .fontSize(12)
         .fontColor('#546B9D')
         .margin(10)

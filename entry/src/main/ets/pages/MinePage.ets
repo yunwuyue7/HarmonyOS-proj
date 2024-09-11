@@ -59,7 +59,7 @@ export struct MinePage {
       .backgroundBlurStyle(BlurStyle.Regular)
 
       Column({ space: 10 }) {
-        this.mineItemBuilder($r('app.media.ic_mine_card'), '打卡记录', () => {
+        this.mineItemBuilder($r('app.media.ic_mine_card'), '阅读记录', () => {
           if (this.token) {
             router.pushUrl({ url: 'pages/PostHistoryPage' })
           } else {

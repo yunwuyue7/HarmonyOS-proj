@@ -13,19 +13,19 @@ struct Index {
     Tabs({index:this.currentTabIndex}){ // index 指示 Tabs 显示哪个页面
       TabContent(){
         PracticePage()
-      }.tabBar(this.barBuilder(0, '答题', $r('app.media.ic_practice'), $r('app.media.ic_practice_selected')))
+      }.tabBar(this.barBuilder(0, '阅读', $r('app.media.ic_practice'), $r('app.media.ic_practice_selected')))
 
       TabContent(){
         CirclePage()
-      }.tabBar(this.barBuilder(1, '圈子', $r('app.media.ic_circle'), $r('app.media.ic_circle_selected')))
+      }.tabBar(this.barBuilder(1, '动态', $r('app.media.ic_circle'), $r('app.media.ic_circle_selected')))
 
       TabContent(){
         UniversityInfoPage()
-      }.tabBar(this.barBuilder(2, '选校', $r('app.media.ic_practice'), $r('app.media.ic_practice_selected')))
+      }.tabBar(this.barBuilder(2, '推荐', $r('app.media.ic_practice'), $r('app.media.ic_practice_selected')))
 
       TabContent(){
         CalendarPage()
-      }.tabBar(this.barBuilder(3, '日历', $r('app.media.ic_circle'), $r('app.media.ic_circle_selected')))
+      }.tabBar(this.barBuilder(3, '计划', $r('app.media.ic_circle'), $r('app.media.ic_circle_selected')))
 
       TabContent(){
         MinePage()

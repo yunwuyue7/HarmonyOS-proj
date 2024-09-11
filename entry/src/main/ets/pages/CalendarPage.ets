@@ -9,7 +9,7 @@ export struct CalendarPage {
   build() {
     Column() {
       // header
-      Text('留学日历')
+      Text('阅读计划')
         .fontSize(18)
         .margin({ top: 45 })
         .fontWeight(FontWeight.Bold)
@@ -19,7 +19,7 @@ export struct CalendarPage {
         .margin({ left: 20, right: 20, top: 10 })
 
       Column() {
-        Text('添加事件')
+        Text('添加日程')
           .fontWeight(FontWeight.Bold)
           .height(35)
           .fontSize(18)
@@ -42,8 +42,7 @@ export struct CalendarPage {
 
       List() {
         ForEach(this.calendarEvents, (calendarEvent) => {
-          ListItem() {
-            CalendarEventItem({ calendarEvent:calendarEvent })
+          ListItem() {            CalendarEventItem({ calendarEvent:calendarEvent })
           }
         })
         ListItem().height(150).selectable(false)  // 占位符，不然最后一个项目在屏幕外
