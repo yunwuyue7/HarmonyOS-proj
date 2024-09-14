@@ -34,7 +34,7 @@ struct PostHistoryPage {
           .onClick(() => {
             router.back()
           })
-        Text('打卡记录')
+        Text('阅读记录')
           .fontSize(18)
           .fontWeight(FontWeight.Bold)
         Image($r('app.media.ic_back'))

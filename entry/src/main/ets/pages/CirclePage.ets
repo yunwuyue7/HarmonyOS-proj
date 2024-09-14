@@ -10,57 +10,57 @@ import emitter from '@ohos.events.emitter'
 export struct CirclePage {
   @State postInfoList: PostInfo[] = []
   @StorageProp('token') @Watch('onTokenChange') token: string = ''
-  page:number = 1 // 当前页面号
-  total:number = 0  // 总页面数量
-  @State isLoading:Boolean = false;
-  scroller:Scroller = new Scroller()
+  page: number = 1 // 当前页面号
+  total: number = 0 // 总页面数量
+  @State isLoading: Boolean = false;
+  scroller: Scroller = new Scroller()
 
   // 加载某一页的数据
-  async getPostInfoPage(){
-    let response = await getAllPost(this.page,10)
-    response.data.data.records.forEach(post=>this.postInfoList.push(new PostInfo(post)))
+  async getPostInfoPage() {
+    let response = await getAllPost(this.page, 10)
+    response.data.data.records.forEach(post => this.postInfoList.push(new PostInfo(post)))
     this.total = response.data.data.total;
     this.page++;
   }
 
   // 刷新页面
-  async refresh(){
+  async refresh() {
     this.isLoading = true;
-    this.postInfoList=[]
-    this.page=1
-    this.total=0
+    this.postInfoList = []
+    this.page = 1
+    this.total = 0
     await this.getPostInfoPage()
     this.isLoading = false;
   }
 
   // 当组件出现时，如果用户已登录，则加载数据
-  aboutToAppear(){
-    if(this.token){
+  aboutToAppear() {
+    if (this.token) {
       this.getPostInfoPage()
     }
 
     // 当组件出现时，开始监听提交新的打卡记录的事件
-    emitter.on({eventId:1},()=>{
+    emitter.on({ eventId: 1 }, () => {
       this.refresh()
     })
   }
 
   // 当 token 改变时，如果用户登录，则加载数据；如果用户退出登录，则清楚数据
-  onTokenChange(){
+  onTokenChange() {
     if (this.token) {
       this.getPostInfoPage()
     }
     else {
-      this.postInfoList=[]
-      this.total=0
-      this.page=1
+      this.postInfoList = []
+      this.total = 0
+      this.page = 1
     }
   }
 
   build() {
     Column() {
       // header
-      Text('英语打卡圈')
+      Text('阅读动态')
         .fontSize(18)
         .margin({ top: 45 })
         .fontWeight(FontWeight.Bold)
@@ -69,12 +69,12 @@ export struct CirclePage {
         .margin({ left: 20, right: 20, top: 10 })
 
       if (this.token) { // 已登录
-        if(this.isLoading){
+        if (this.isLoading) {
           this.loadingBuilder()
-        }else{
+        } else {
           this.listBuilder()
         }
-      } else {  // 未登录
+      } else { // 未登录
         this.unLoginBuilder()
       }
     }.height('100%')
@@ -127,21 +127,21 @@ export struct CirclePage {
   listBuilder() {
     Stack() { // 将打卡记录列表与控制按钮堆叠在一起
       // 打卡记录列表
-      List({scroller:this.scroller}) {  // 打卡记录列表
+      List({ scroller: this.scroller }) { // 打卡记录列表
         ForEach(this.postInfoList, (post) => {
           ListItem() {
-            PostItem({ post: post })  // 打卡记录
+            PostItem({ post: post }) // 打卡记录
           }
         })
       }.width('100%')
       .height('100%')
       .alignListItem(ListItemAlign.Center)
-      .onReachEnd(()=>{ // 列表到底了
-        if (this.postInfoList.length < this.total) {  // 未加载全部条目
+      .onReachEnd(() => { // 列表到底了
+        if (this.postInfoList.length < this.total) { // 未加载全部条目
           this.getPostInfoPage()
         }
-        else {  // 已加载全部条目
-          promptAction.showToast({message:'没有更多数据了'})
+        else { // 已加载全部条目
+          promptAction.showToast({ message: '没有更多数据了' })
         }
       })
 
@@ -179,7 +179,6 @@ export struct CirclePage {
     .layoutWeight(1)
     .alignContent(Alignment.BottomEnd)
   }
-
 }
 
 // 自定义打卡记录组件
@@ -215,7 +214,7 @@ struct PostItem {
         Column() {
           StatItem({
             icon: $r('app.media.ic_timer_white'),
-            name: '用时',
+            name: '时长',
             fontColor: Color.White }) {
             Text(convertMillisecondsToTime(this.post.timeUsed))
               .statTextStyle()
@@ -223,7 +222,7 @@ struct PostItem {
 
           StatItem({
             icon: $r('app.media.ic_accuracy_white'),
-            name: '准确率',
+            name: '进度',
             fontColor: Color.White
           }) {
             Text((this.post.answeredCount === 0 ? 0 : this.post.rightCount / this.post.answeredCount * 100).toFixed(0) + '%')
@@ -232,7 +231,7 @@ struct PostItem {
 
           StatItem({
             icon: $r('app.media.ic_count_white'),
-            name: '个数',
+            name: '已阅读数量',
             fontColor: Color.White
           }) {
             Text(this.post.answeredCount.toString())
@@ -256,15 +255,15 @@ struct PostItem {
             .height(26)
             .onClick(() => {
               // 点赞/取消点赞
-              if(this.post.isLike){
+              if (this.post.isLike) {
                 // 已点赞，则取消点赞
-                this.post.isLike=false;
+                this.post.isLike = false;
                 this.post.likeCount--;
                 cancelLike(this.post.id)
 
-              }else{
+              } else {
                 // 未点赞，则点赞
-                this.post.isLike=true;
+                this.post.isLike = true;
                 this.post.likeCount++;
                 like(this.post.id)
               }
@@ -281,7 +280,8 @@ struct PostItem {
   }
 }
 
-@Extend(Text) function statTextStyle() {
+@Extend(Text)
+function statTextStyle() {
   .width(100)
   .fontSize(16)
   .textAlign(TextAlign.End)

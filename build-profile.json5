@@ -6,9 +6,9 @@
         "type": "HarmonyOS",
         "material": {
           "certpath": "C:\\Users\\20187\\.ohos\\config\\default_HarmonyOS-proj_zsU7p4lQkEbGdAyfLvYrvrz4whESRjgc9bTfqoYBnbw=.cer",
-          "storePassword": "0000001B10F3DC95AA983060918B7090405F6549889016110716FAEF7E439D0A8F48F2F0CAFB75CC5368DB",
+          "storePassword": "0000001B946BED62CB9E7B97A77BFB84E2A90BF743A3D596BFB3202D65787EF27F2FE60F515F02FC6AB26A",
           "keyAlias": "debugKey",
-          "keyPassword": "0000001BC4F446E0CEB2DB4594B18BA881BA30108FC095553068C164DB9EA190683F01DDCBD3430D7643BC",
+          "keyPassword": "0000001B04CAC086A902FA6886A10DF3604D1F8A0A3AD80E76E558CDCF17DE3FFD9DE02401328455FD9030",
           "profile": "C:\\Users\\20187\\.ohos\\config\\default_HarmonyOS-proj_zsU7p4lQkEbGdAyfLvYrvrz4whESRjgc9bTfqoYBnbw=.p7b",
           "signAlg": "SHA256withECDSA",
           "storeFile": "C:\\Users\\20187\\.ohos\\config\\default_HarmonyOS-proj_zsU7p4lQkEbGdAyfLvYrvrz4whESRjgc9bTfqoYBnbw=.p12"

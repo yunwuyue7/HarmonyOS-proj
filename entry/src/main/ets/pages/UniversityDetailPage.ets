@@ -28,9 +28,9 @@ struct UniversityDetailPage {
       // header：学校信息
       Row({ space: 25 }) {
         // 校徽
-        Image(this.universityInfo.badgeURL)
-          .height(70)
-          .width(70)
+        Image(this.universityInfo.photoURL)
+          .height(100)
+          // .width(70)
           .borderRadius(5)
 
         // 学校信息
@@ -39,15 +39,15 @@ struct UniversityDetailPage {
             .height(30)
             .fontSize(25)
             .fontWeight(FontWeight.Bold)
-          Text(this.universityInfo.nameUS)
-            .height(20)
-            .fontSize(13)
-            .fontWeight(FontWeight.Bold)
-          Text("US News排名：" + String(this.universityInfo.usNewsRank))
+          Text("豆瓣排名：" + String(this.universityInfo.douban_rank))
             .height(20)
             .fontSize(14)
             .fontWeight(FontWeight.Bold)
-          Text("位置：" + this.universityInfo.location)
+          Text("作者：" + this.universityInfo.author)
+            .height(20)
+            .fontSize(14)
+            .fontWeight(FontWeight.Bold)
+          Text(this.universityInfo.country)
             .height(20)
             .fontSize(14)
             .fontWeight(FontWeight.Bold)
@@ -63,17 +63,10 @@ struct UniversityDetailPage {
       Divider().padding({top: 5})
 
       List({scroller:this.scroller}) {  // 学校信息列表
-        ListItem() {
-          Image(this.universityInfo.photoURL)
-            .height(200)
-            .width(360)
-            .borderRadius(10)
-            .padding({top: 15})
-        }
 
         ListItem() {
           Column() {
-            Text("学校简介")
+            Text("简介")
               .fontWeight(FontWeight.Bold)
               .height(35)
 
@@ -83,34 +76,6 @@ struct UniversityDetailPage {
           .width('100%')
           .alignItems(HorizontalAlign.Start)
           .margin({ top: 5 })
-        }
-
-        ListItem() {
-          Row() {
-            Text("专业设置")
-              .fontWeight(FontWeight.Bold)
-              .height(35)
-            Blank()
-            Text("QS排名")
-              .fontWeight(FontWeight.Bold)
-              .height(35)
-          }
-          .margin({ top: 5 })
-          .width('97%')
-        }
-
-        ForEach(this.majorInfo, (majorInfo) => {
-          ListItem() {
-            MajorInfoItem({ majorInfo: majorInfo })
-          }
-          .padding({ left:5 })
-        })
-
-        ListItem() {
-          Text("录取案例")
-            .fontWeight(FontWeight.Bold)
-            .height(35)
-            .margin({ top: 10 })
         }
 
         ForEach(this.admissionCases, (admissionCase) => {
@@ -183,28 +148,28 @@ struct AdmissionCaseItem {
   } // build
 }
 
-// 自定义专业信息组件
-// @Preview
-@Component
-struct MajorInfoItem {
-  majorInfo:MajorInfo
-
-  build() {
-    // 录取详情
-    Row() {
-      Text(this.majorInfo.name)
-      Blank()
-      Text(String(this.majorInfo.qsRank))
-    }
-    .width('97%')
-    .padding(10)
-    .margin({ top: 10 })
-    .borderRadius(7)
-    .shadow({ radius: 20 })
-    .onClick(()=>{
-      router.pushUrl({url:'pages/MajorDetailPage',params:{  // 点击学校介绍时，切换到学校详情页面
-        majorInfo:this.majorInfo
-      }})
-    })  // onClick
-  } // build
-}
+// // 自定义专业信息组件
+// // @Preview
+// @Component
+// struct MajorInfoItem {
+//   majorInfo:MajorInfo
+//
+//   build() {
+//     // 录取详情
+//     Row() {
+//       Text(this.majorInfo.name)
+//       Blank()
+//       Text(String(this.majorInfo.qsRank))
+//     }
+//     .width('97%')
+//     .padding(10)
+//     .margin({ top: 10 })
+//     .borderRadius(7)
+//     .shadow({ radius: 20 })
+//     .onClick(()=>{
+//       router.pushUrl({url:'pages/MajorDetailPage',params:{  // 点击学校介绍时，切换到学校详情页面
+//         majorInfo:this.majorInfo
+//       }})
+//     })  // onClick
+//   } // build
+// }

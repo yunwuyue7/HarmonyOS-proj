@@ -11,6 +11,38 @@
     {
       "name": "EntryAbility_label",
       "value": "label"
+    },
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "Calculator"
+    },
+    {
+      "name": "choiceDevice",
+      "value": "Choice Device"
+    },
+    {
+      "name": "cancel",
+      "value": "Cancel"
+    },
+    {
+      "name": "distributed_calculator",
+      "value": "分布式阅读器"
+    },
+    {
+      "name": "distributed_permission",
+      "value": "Allow data exchange between different devices"
+    },
+    {
+      "name": "localhost",
+      "value": "localhost"
     }
   ]
 }

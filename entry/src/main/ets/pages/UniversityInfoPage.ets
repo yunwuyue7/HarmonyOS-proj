@@ -11,7 +11,7 @@ export struct UniversityInfoPage {
   build() {
     Column() {
       // header
-      Text('学校介绍')
+      Text('近期热门')
         .fontSize(18)
         .margin({ top: 45 })
         .fontWeight(FontWeight.Bold)
@@ -89,9 +89,8 @@ struct UniversityInfoItem {
   build() {
     Row({ space: 13 }) {
       // 校徽
-      Image(this.universityInfo.badgeURL)
-        .height(55)
-        .width(55)
+      Image(this.universityInfo.photoURL)
+        .width("15%")
         .borderRadius(5)
 
       // 学校信息
@@ -100,18 +99,22 @@ struct UniversityInfoItem {
           .height(30)
           .fontSize(25)
           .fontWeight(FontWeight.Bold)
-        Text(this.universityInfo.nameUS)
-          .height(20)
-          .fontSize(13)
-          .fontWeight(FontWeight.Bold)
-        Text("US News排名：" + String(this.universityInfo.usNewsRank))
+        Text("豆瓣排名：" + String(this.universityInfo.douban_rank))
           .height(20)
           .fontSize(14)
           .fontWeight(FontWeight.Bold)
-        Text("位置：" + this.universityInfo.location)
+
+        Text(this.universityInfo.country+ " " + this.universityInfo.author)
           .height(20)
           .fontSize(14)
           .fontWeight(FontWeight.Bold)
+        Text("简介："+this.universityInfo.introduction)
+          .height(40)
+          .width("80%")
+          .fontSize(14)
+          .fontWeight(FontWeight.Bold)
+          .maxLines(2)
+          .textOverflow({ overflow: TextOverflow.Ellipsis })
       } // Column: 学校信息
       .alignItems(HorizontalAlign.Start)
     } // Row

@@ -24,9 +24,9 @@ export class CalendarEvent {
 
 export var calendarEventData: CalendarEvent[] = [
   {
-    name: "TOEFL",
+    name: "TOEFL词汇精选",
     isComplete: false,
-    incompleteValue: "背单词、刷题",
+    incompleteValue: "背前三章",
     completeValue: "成绩：120 分",
     year: 2024,
     month: 1,
@@ -34,20 +34,20 @@ export var calendarEventData: CalendarEvent[] = [
     date: new Date('2024-1-1')
   },
   {
-    name: "GRE",
+    name: "计算机体系结构",
     isComplete: false,
-    incompleteValue: "背单词、刷题",
-    completeValue: "已完成",
+    incompleteValue: "精读流水线部分",
+    completeValue: "已结课",
     year: 2024,
     month: 3,
     day: 1,
     date: new Date('2024-3-1')
   },
   {
-    name: "实习",
+    name: "繁花",
     isComplete: false,
-    incompleteValue: "投递简历",
-    completeValue: "已完成",
+    incompleteValue: "阅读第拾叁章",
+    completeValue: "已读完",
     year: 2024,
     month: 5,
     day: 1,

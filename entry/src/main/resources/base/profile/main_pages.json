@@ -6,6 +6,7 @@
     "pages/PostHistoryPage",
     "pages/UniversityDetailPage",
     "pages/AdmissionCaseDetailPage",
-    "pages/MajorDetailPage"
+    "pages/MajorDetailPage",
+    "pages/Read"
   ]
 }

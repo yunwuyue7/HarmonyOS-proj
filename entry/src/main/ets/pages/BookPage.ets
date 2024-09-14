@@ -1,40 +1,43 @@
-import { CalendarEvent, calendarEventData } from '../model/CalendarEvent'
+import { CalendarEvent, calendarEventData } from '../model/Book'
+import router from '@ohos.router'
 
 @Preview
 @Component
-export struct CalendarPage {
+export struct BookPage {
   scroller:Scroller = new Scroller()
   @State calendarEvents:CalendarEvent[] = calendarEventData
 
   build() {
     Column() {
       // header
-      Text('阅读计划')
-        .fontSize(18)
-        .margin({ top: 45 })
-        .fontWeight(FontWeight.Bold)
-      
-      Divider()
-        .color(Color.Black)
-        .margin({ left: 20, right: 20, top: 10 })
-
-      Column() {
-        Text('添加计划')
-          .fontWeight(FontWeight.Bold)
-          .height(35)
-          .fontSize(18)
-          .fontColor(Color.Blue)
+      Row(){
+        Column() {
+          Text('我的书籍')
+            .fontWeight(FontWeight.Bold)
+            .height(35)
+            .fontSize(18)
+        }
+        .width('25%')
+        .padding(10)
+        .margin({ top: 10 })
+        Column(){
+        }
+        .width('50%')
+        Column() {
+          Text('添加书籍')
+            .fontWeight(FontWeight.Bold)
+            .height(35)
+            .fontSize(18)
+            .fontColor(Color.Blue)
+        }
+        .width('25%')
+        .padding(10)
+        .margin({ top: 10 })
+        .onClick(()=>{  // 点击事件卡，修改事件
+          let newCalendarEvent = new CalendarEvent()
+          this.calendarEvents.push(newCalendarEvent)
+        })
       }
-      .width('90%')
-      .padding(10)
-      .margin({ top: 10 })
-      .borderRadius(10)
-      .shadow({ radius: 20 })
-      .onClick(()=>{  // 点击事件卡，修改事件
-        let newCalendarEvent = new CalendarEvent()
-        this.calendarEvents.push(newCalendarEvent)
-      })  // onClick
-
       Divider()
         .color(Color.Black)
         .margin({ left: 20, right: 20, top: 10 })
@@ -74,12 +77,12 @@ struct CalendarEventItem {
     // 录取详情
     Row({space:15}) {
       if (this.calendarEvent.isComplete) {
-        Image($r('app.media.ic_complete'))
+        Image('badges/book.png')
           .height(60)
           .width(60)
       }
       else {
-        Image($r('app.media.ic_incomplete'))
+        Image('badges/book.png')
           .height(60)
           .width(60)
       }
@@ -117,7 +120,7 @@ struct CalendarEventItem {
     .shadow({ radius: 20 })
     .onClick(()=>{  // 点击事件卡，修改事件
       this.dialogController.open()
-    })  // onClick
+    })
   } // build
 }
 
@@ -138,8 +141,8 @@ struct ModifyEventDialog{
       Column() {
         // 事件名称
         Row({ space:10 }) {
-          Text("计划阅读书目")
-          TextInput({ placeholder: '请输入计划名称', text:this.calendarEvent.name })
+          Text("书名")
+          TextInput({ placeholder: '请输入书名', text:this.calendarEvent.name })
             .inputStyle()
             .onChange((value)=>{
               this.calendarEvent.name = value
@@ -148,74 +151,40 @@ struct ModifyEventDialog{
         .padding({ top:0 })
 
         // 事件详情
-        if (this.isComplete) {
-          Row({ space:10 }) {
-            Text("计划详情")
-            TextInput({ placeholder: '请输入计划详情', text:this.calendarEvent.completeValue })
-              .inputStyle()
-              .onChange((value)=>{
-                this.calendarEvent.completeValue = value
-              })
-          }
-          .padding({ top:15 })
-        }
-        else {
-          Row({ space:10 }) {
-            Text("计划详情")
-            TextInput({ placeholder: '请输入计划详情', text:this.calendarEvent.incompleteValue })
+        Row({ space:10 }) {
+            Text("作者")
+            TextInput({ placeholder: '请输入作者', text:this.calendarEvent.incompleteValue })
               .inputStyle()
               .onChange((value)=>{
                 this.calendarEvent.incompleteValue = value
               })
           }
           .padding({ top:15 })
-        }
+
 
         // deadline
-        if (!this.isComplete) {
+
           Row({ space:10 }) {
-            Text("计划日期")
-            DatePicker({
-              start: new Date('1970-1-1'),
-              end: new Date('2100-1-1'),
-              selected: this.calendarEvent.date,
-            })
-              .width(170)
-              .onChange((value: DatePickerResult) => {
-                this.calendarEvent.date.setFullYear(value.year, value.month, value.day)
-                this.calendarEvent.year = value.year
-                this.calendarEvent.month = value.month + 1
-                this.calendarEvent.day = value.day
+            Text("笔记")
+            TextInput({ placeholder: '请输入笔记', text:this.calendarEvent.cnbb })
+              .inputStyle()
+              .onChange((value)=>{
+                this.calendarEvent.cnbb = value
               })
-          }
+            }
           .padding({ top:15 })
-        }
 
-        // 完成情况
-        Row({ space:10 }) {
-          Text("未完成")
-          Radio({ value: 'complete', group: 'radioGroup' })
-            .checked(!this.calendarEvent.isComplete)
-            .onChange((isChecked: boolean) => {
-              if(isChecked) {
-                this.isComplete = false
-                this.calendarEvent.isComplete = false
-              }
-            })
-
-          Blank()
-          Text("已完成")
-          Radio({ value: 'incomplete', group: 'radioGroup' })
-            .checked(this.calendarEvent.isComplete)
-            .onChange((isChecked: boolean) => {
-              if(isChecked) {
-                this.isComplete = true
-                this.calendarEvent.isComplete = true
-              }
-            })
-        }
-        .width('100%')
-        .padding({ top:15 })
+        Text("开始阅读")
+          .onClick(()=>{
+                router.pushUrl({url: 'pages/Read', params: {aa: this.calendarEvent.context}})
+            }
+          )
+          .margin({top: 15})
+          .fontWeight(FontWeight.Bold)
+          .height(35)
+          .fontSize(18)
+          .fontColor(Color.Blue)
+          .width("100%")
 
       } // 主体 Column
       .alignItems(HorizontalAlign.Start)
